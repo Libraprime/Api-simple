@@ -1,22 +1,22 @@
 {
-  "name": "API_REST_NodeJS",
+  "name": "api-simple",
   "version": "1.0.0",
   "description": "",
-  "license": "MIT",
-  "author": "Ugwuja Chisom",
-  "type": "commonjs",
-  "main": "server.js",
-  "scripts": {
-    "start": "nodemon --exec babel-node server.js",
-    "test": "ava"
-  },
   "keywords": [
     "Express",
     "JS"
   ],
+  "license": "MIT",
+  "author": "Ugwuja Chisom",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/server.js",
+    "test": "ava"
+  },
   "dependencies": {
-    "body-parser": "^2.2.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "http-status-codes": "^2.1.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.6",
