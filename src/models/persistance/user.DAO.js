@@ -10,14 +10,21 @@ const getAll = () => {
 };
 
 const update = (newDetails) => {
-    const index = users.findIndex(user => user.id === newDetails.id);
+    let isUserFound = false
+    users.map((user, index) => {
+        if (user.id === newDetails.id) {
+            
+        }   
+    })
+
+    // const index = users.findIndex(user => user.id === newDetails.id);
     
-    if (index !== -1) {
-        // Merge existing user data with new details
-        users[index] = { ...users[index], ...newDetails };
-        return users[index];
-    }
-    return null;
+    // if (index !== -1) {
+    //     // Merge existing user data with new details
+    //     users[index] = { ...users[index], ...newDetails };
+    //     return users[index];
+    // }
+    // return null;
 };
 
 const insert = (details) => {

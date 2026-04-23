@@ -9,9 +9,7 @@ const addUser = (details) => {
 };
 
 const updateUser = (userId, details) => {
-
-  
-  userDao.update(userId, details);
+  return userDao.update(userId, details);
 };
 
 const removeUser = (userId) => {

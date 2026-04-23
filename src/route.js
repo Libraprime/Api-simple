@@ -32,15 +32,24 @@ router.post('/add', (req, res) => {
   });
 });
 
-router.post('/update', (req, res) => {
+router.put('/update/:id', (req, res) => {
   const { body: user } = req;
 
-  const addedUser = userService.addUser(user);
+  const id = parseInt(req.params.id, 10)
 
-  return res.status(StatusCodes.CREATED).send({
-    status: STATUS.success,
-    Message: addedUser,
-  });
+  const updatedUser = userService.updateUser(id, user);
+
+  if (updatedUser) {
+    return res.status(StatusCodes.OK).send({
+      status: STATUS.success,
+      Message: updatedUser,
+    });
+  } else {
+    return res.status(StatusCodes.NOT_FOUND).send({
+      status: STATUS.failure,
+      Message: `User ${id} is not found`,
+    });
+  }
 });
 
 router.get('/ping', (req, res) => {
