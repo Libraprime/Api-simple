@@ -1,36 +1,46 @@
 import users from '../data/users.data.js'; // Don't forget the .js extension!
 
 const get = (userId) => {
-    // Simple and clean: find returns the first match or undefined
-    return users.find((user) => user.id === userId);
+    const findUser = users.find((user) => {
+        if (user.id === userId) {
+            return user;
+        }
+        return null;
+    })
+    
+    return findUser;
 };
 
 const getAll = () => {
     return users;
 };
 
-const update = (newDetails) => {
-    let isUserFound = false
-    users.map((user, index) => {
-        if (user.id === newDetails.id) {
-            
-        }   
-    })
-
-    // const index = users.findIndex(user => user.id === newDetails.id);
+const update = (userId, newDetails) => {
+    let existingUser = null;
+    let userIndex;
     
-    // if (index !== -1) {
-    //     // Merge existing user data with new details
-    //     users[index] = { ...users[index], ...newDetails };
-    //     return users[index];
-    // }
-    // return null;
+    users.map((user, index) => {
+        if (user.id === userId) {
+            userIndex = index;
+            existingUser = user;
+        }   
+    });
+
+    if (!existingUser) {
+        return false; // Or throw an error, depending on your error handling strategy
+    }
+
+    const updatedUser = { ...existingUser, ...newDetails };
+
+    users.splice(userIndex, 1, updatedUser);
+
+    return updatedUser;
 };
 
 const insert = (details) => {
     // Note: users.length + 1 can cause ID collisions if you delete users.
     // For a simple API, this works for now.
-    const newUser = { ...details, id: users.length + 1 };
+    const newUser = {  id: users.length + 1, ...details};
     users.push(newUser);
     return newUser;
 };
