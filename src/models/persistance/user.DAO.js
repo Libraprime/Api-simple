@@ -1,19 +1,9 @@
 import users from '../data/users.data.js'; // Don't forget the .js extension!
 
-const get = (userId) => {
-    const findUser = users.find((user) => {
-        if (user.id === userId) {
-            return user;
-        }
-        return null;
-    })
-    
-    return findUser;
-};
+const get = (userId) => users.find((user) => user.id === userId);
 
-const getAll = () => {
-    return users;
-};
+
+const getAll = () => users;
 
 const update = (userId, newDetails) => {
     let existingUser = null;

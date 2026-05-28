@@ -49,13 +49,6 @@ router.post('/', (req, res) => {
 
   const addedUser = userService.addUser(user);
 
-  // if (!user.name) {
-  //   return res.status(StatusCodes.BAD_REQUEST).send({
-  //     status: STATUS.failure,
-  //     Message: 'Name is required'
-  //   });
-  // }
-
   return res.status(StatusCodes.CREATED).send({
     status: STATUS.status,
     user: addedUser,
@@ -84,17 +77,18 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
+
   const deletedUser = userService.removeUser(id);
 
   if (deletedUser) {
     return res.status(StatusCodes.OK).send({
       status: STATUS.status,
-      user: deletedUser,
+      Message: `User with ID ${id} deleted successfully`,
     });
   } else {
     return res.status(StatusCodes.NOT_FOUND).send({
       status: STATUS.failure,
-      user: `User ${id} is not found`,
+      Message: `User with ID ${id} not found`,
     });
   }
 });
