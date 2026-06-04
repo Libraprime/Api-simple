@@ -1,24 +1,16 @@
 import userDao from '../models/persistance/user.DAO.js';
 
-const getUser = (userId) => {
-  return userDao.get(userId);
-};
+const getUser = (userId) => userDao.get(userId);
 
-const getAllUsers = () => {
-  return userDao.getAll();
-};
 
-const addUser = (details) => {
-  return userDao.insert(details);
-};
+const getAllUsers = () => userDao.getAll();
 
-const updateUser = (userId, details) => {
-  return userDao.update(userId, details);
-};
+const addUser = (details) => userDao.insert(details);
 
-const removeUser = (userId) => {
-  return userDao.remove(userId);
-};
+const updateUser = (userId, details) => userDao.update(userId, details);
+
+
+const removeUser = (userId) => userDao.remove(userId);
 
 export default { 
   addUser, 
