@@ -8,6 +8,13 @@ const STATUS = {
   failure: 'Failure',
 };
 
+/**
+ * Retrieves all users.
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+*/
+
 const getAllUsers = (req, res) => {
   const users = userService.getAllUsers();
   
@@ -21,6 +28,13 @@ const getAllUsers = (req, res) => {
   });
 }
 
+
+/** * 
+ * Retrieves a user by ID.
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+*/
 const getUsers = (req, res) => {
   //localhost:3000/v1/users/1
   const id = parseInt(req.params.id, 10);
@@ -39,6 +53,13 @@ const getUsers = (req, res) => {
   });
 }
 
+
+/** 
+ * Adds a new user.
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+*/
 const addUser = (req, res) => {
   const { body: user } = req;
 
@@ -50,7 +71,12 @@ const addUser = (req, res) => {
   });
 }
 
-
+/**
+ * Updates an existing user by ID.
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+*/
 const updateUser = (req, res) => {
   const { body: user } = req;
 
@@ -71,6 +97,12 @@ const updateUser = (req, res) => {
   }
 }
 
+/**
+ * Removes a user by ID.
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+*/
 const removeUser = (req, res) => {
   const id = parseInt(req.params.id, 10);
 
