@@ -1,6 +1,8 @@
 import userService from "../services/user.service.js";
 import { StatusCodes } from "http-status-codes";
+import pino from 'pino';
 
+const logger = pino();
 
 const STATUS = {
   status: 'OK',
@@ -19,6 +21,7 @@ const getAllUsers = (req, res) => {
   const users = userService.getAllUsers();
   
   if (users.length) {
+    logger.info('All users retrieved successfully');
     return res.status(StatusCodes.OK).send(users);
   }
 
@@ -41,6 +44,7 @@ const getUsers = (req, res) => {
   const user = userService.getUser(id);
 
   if (user) {
+    logger.info(`User with ID ${id} retrieved successfully`);
     return res.status(StatusCodes.OK).send({
       status: STATUS.status,
       user,
@@ -64,6 +68,8 @@ const addUser = (req, res) => {
   const { body: user } = req;
 
   const addedUser = userService.addUser(user);
+
+  logger.info(`User with ID ${addedUser.id} added successfully`);
 
   return res.status(StatusCodes.CREATED).send({
     status: STATUS.status,
@@ -89,6 +95,8 @@ const updateUser = (req, res) => {
       status: STATUS.status,
       user: updatedUser,
     });
+
+    logger.info(`User with ID ${id} updated successfully`);
   } else {
     return res.status(StatusCodes.NOT_FOUND).send({
       status: STATUS.failure,
@@ -109,10 +117,13 @@ const removeUser = (req, res) => {
   const deletedUser = userService.removeUser(id);
 
   if (deletedUser) {
+    logger.info(`User with ID ${id} deleted successfully`);
     return res.status(StatusCodes.OK).send({
       status: STATUS.status,
       Message: `User with ID ${id} deleted successfully`,
     });
+
+    logger.info(`User with ID ${id} deleted successfully`);
   } else {
     return res.status(StatusCodes.NOT_FOUND).send({
       status: STATUS.failure,
